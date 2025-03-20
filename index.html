@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AP Exam Countdown</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.85;
+        }
+        
+        .countdown-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .countdown-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .countdown-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        
+        .exam-date {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 3px;
+        }
+        
+        .time-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px;
+            border-radius: 8px;
+            min-width: 55px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .time-label {
+            font-size: 0.9rem;
+            margin-top: 8px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .countdown-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .countdown-box {
+                margin-bottom: 20px;
+                padding: 20px 15px;
+            }
+            
+            .time-value {
+                font-size: 1.6rem;
+                min-width: 48px;
+                padding: 6px;
+            }
+            
+            .time-unit {
+                margin: 0 2px;
+            }
+            
+            .time-label {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AP Exam Countdown</h1>
+        <p class="subtitle">Time remaining until your AP exams</p>
+    </header>
+    
+    <div class="countdown-container">
+        <!-- AP Microeconomics -->
+        <div class="countdown-box">
+            <h2 class="countdown-title">AP Microeconomics</h2>
+            <p class="exam-date">May 5, 2025 at 12:00 PM</p>
+            <div class="countdown" id="micro-countdown">
+                <div class="time-unit">
+                    <div class="time-value" id="micro-months">0</div>
+                    <div class="time-label">Months</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="micro-days">0</div>
+                    <div class="time-label">Days</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="micro-hours">0</div>
+                    <div class="time-label">Hours</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="micro-minutes">0</div>
+                    <div class="time-label">Minutes</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- AP Macroeconomics -->
+        <div class="countdown-box">
+            <h2 class="countdown-title">AP Macroeconomics</h2>
+            <p class="exam-date">May 9, 2025 at 12:00 PM</p>
+            <div class="countdown" id="macro-countdown">
+                <div class="time-unit">
+                    <div class="time-value" id="macro-months">0</div>
+                    <div class="time-label">Months</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="macro-days">0</div>
+                    <div class="time-label">Days</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="macro-hours">0</div>
+                    <div class="time-label">Hours</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="macro-minutes">0</div>
+                    <div class="time-label">Minutes</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- AP CSP -->
+        <div class="countdown-box">
+            <h2 class="countdown-title">AP Computer Science Principles</h2>
+            <p class="exam-date">May 15, 2025 at 12:00 PM</p>
+            <div class="countdown" id="csp-countdown">
+                <div class="time-unit">
+                    <div class="time-value" id="csp-months">0</div>
+                    <div class="time-label">Months</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="csp-days">0</div>
+                    <div class="time-label">Days</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="csp-hours">0</div>
+                    <div class="time-label">Hours</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="csp-minutes">0</div>
+                    <div class="time-label">Minutes</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Good luck on your exams! 🍀</p>
+    </footer>
+
+    <script>
+        // Set the exam dates
+        const microExamDate = new Date('May 5, 2025 12:00:00').getTime();
+        const macroExamDate = new Date('May 9, 2025 12:00:00').getTime();
+        const cspExamDate = new Date('May 15, 2025 12:00:00').getTime();
+        
+        // Update the countdown every second
+        const countdownTimer = setInterval(function() {
+            const now = new Date().getTime();
+            
+            // Calculate time remaining for each exam
+            updateCountdown('micro', microExamDate, now);
+            updateCountdown('macro', macroExamDate, now);
+            updateCountdown('csp', cspExamDate, now);
+            
+        }, 1000);
+        
+        function updateCountdown(examPrefix, examDate, currentTime) {
+            // Calculate time difference
+            const difference = examDate - currentTime;
+            
+            if (difference <= 0) {
+                // Exam has passed
+                document.getElementById(`${examPrefix}-months`).innerHTML = '0';
+                document.getElementById(`${examPrefix}-days`).innerHTML = '0';
+                document.getElementById(`${examPrefix}-hours`).innerHTML = '0';
+                document.getElementById(`${examPrefix}-minutes`).innerHTML = '0';
+                return;
+            }
+            
+            // Calculate months, days, hours, minutes, seconds
+            const currentDate = new Date(currentTime);
+            const targetDate = new Date(examDate);
+            
+            // Calculate months
+            let months = (targetDate.getFullYear() - currentDate.getFullYear()) * 12;
+            months += targetDate.getMonth() - currentDate.getMonth();
+            
+            // Adjust if current day is after target day in the same month
+            if (currentDate.getDate() > targetDate.getDate()) {
+                months--;
+            }
+            
+            // Temporary date for calculating days
+            const tempCurrentDate = new Date(currentDate);
+            tempCurrentDate.setMonth(tempCurrentDate.getMonth() + months);
+            
+            // Calculate days
+            let days = Math.floor((examDate - tempCurrentDate) / (1000 * 60 * 60 * 24));
+            
+            // Calculate hours, minutes
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            
+            // Update the HTML elements
+            document.getElementById(`${examPrefix}-months`).innerHTML = months;
+            document.getElementById(`${examPrefix}-days`).innerHTML = days;
+            document.getElementById(`${examPrefix}-hours`).innerHTML = hours;
+            document.getElementById(`${examPrefix}-minutes`).innerHTML = minutes;
+        }
+    </script>
+</body>
+</html>
