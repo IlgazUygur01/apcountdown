@@ -260,33 +260,18 @@
                 return;
             }
             
-            // Calculate months, days, hours, minutes, seconds
-            const currentDate = new Date(currentTime);
-            const targetDate = new Date(examDate);
-            
-            // Calculate months
-            let months = (targetDate.getFullYear() - currentDate.getFullYear()) * 12;
-            months += targetDate.getMonth() - currentDate.getMonth();
-            
-            // Adjust if current day is after target day in the same month
-            if (currentDate.getDate() > targetDate.getDate()) {
-                months--;
-            }
-            
-            // Temporary date for calculating days
-            const tempCurrentDate = new Date(currentDate);
-            tempCurrentDate.setMonth(tempCurrentDate.getMonth() + months);
-            
-            // Calculate days
-            let days = Math.floor((examDate - tempCurrentDate) / (1000 * 60 * 60 * 24));
-            
-            // Calculate hours, minutes
+            // Calculate remaining time components
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
             const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
             
+            // Calculate months and remaining days
+            const months = Math.floor(days / 30);
+            const remainingDays = days % 30;
+            
             // Update the HTML elements
             document.getElementById(`${examPrefix}-months`).innerHTML = months;
-            document.getElementById(`${examPrefix}-days`).innerHTML = days;
+            document.getElementById(`${examPrefix}-days`).innerHTML = remainingDays;
             document.getElementById(`${examPrefix}-hours`).innerHTML = hours;
             document.getElementById(`${examPrefix}-minutes`).innerHTML = minutes;
         }
