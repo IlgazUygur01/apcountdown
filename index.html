@@ -248,7 +248,7 @@
         }, 1000);
         
         function updateCountdown(examPrefix, examDate, currentTime) {
-            // Calculate time difference
+            // Calculate time difference in milliseconds
             const difference = examDate - currentTime;
             
             if (difference <= 0) {
@@ -260,20 +260,20 @@
                 return;
             }
             
-            // Calculate remaining time components
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            // Calculate total time remaining in milliseconds and convert to total days
+            const totalDays = Math.floor(difference / (1000 * 60 * 60 * 24));
             const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
             
-            // Calculate months and remaining days
-            const months = Math.floor(days / 30);
-            const remainingDays = days % 30;
+            // Calculate months and remaining days using fixed 30-day months
+            const months = Math.floor(totalDays / 30);
+            const days = totalDays % 30;
             
-            // Update the HTML elements
-            document.getElementById(`${examPrefix}-months`).innerHTML = months;
-            document.getElementById(`${examPrefix}-days`).innerHTML = remainingDays;
-            document.getElementById(`${examPrefix}-hours`).innerHTML = hours;
-            document.getElementById(`${examPrefix}-minutes`).innerHTML = minutes;
+            // Ensure we never show negative values
+            document.getElementById(`${examPrefix}-months`).innerHTML = Math.max(0, months);
+            document.getElementById(`${examPrefix}-days`).innerHTML = Math.max(0, days);
+            document.getElementById(`${examPrefix}-hours`).innerHTML = Math.max(0, hours);
+            document.getElementById(`${examPrefix}-minutes`).innerHTML = Math.max(0, minutes);
         }
     </script>
 </body>
